@@ -139,12 +139,12 @@ class App extends React.Component {
   }
   componentDidMount() {
     // TODO: for test logging, remove when done
-    this.highlightLine(2, 'red');
-    this.highlightLine(9, 'yellow');
-    this.highlightLine(4, 'yellow');
-    this.highlightLine(5, 'red');
-    this.highlightLine(6, 'green');
-    this.highlightLine(8, 'green');
+    this.highlightLine(2, 'bad');
+    this.highlightLine(9, 'warning');
+    this.highlightLine(4, 'warning');
+    this.highlightLine(5, 'bad');
+    this.highlightLine(6, 'good');
+    this.highlightLine(8, 'good');
   }
   highlightWords() {
     // TODO: use doc.markText(from: {line, ch}, to: {line, ch}, ?options: object) → TextMarker
@@ -156,14 +156,14 @@ class App extends React.Component {
     const lineNumber = _lineNumber - 1;
     const cm = this.refs.codemirror.getCodeMirror();
     switch (color) {
-      case 'red':
-        cm.addLineClass(lineNumber, 'background', 'line-red');
+      case 'bad':
+        cm.addLineClass(lineNumber, 'background', 'line-bad');
         break;
-      case 'yellow':
-        cm.addLineClass(lineNumber, 'background', 'line-yellow');
+      case 'warning':
+        cm.addLineClass(lineNumber, 'background', 'line-warning');
         break;
-      case 'green':
-        cm.addLineClass(lineNumber, 'background', 'line-green');
+      case 'good':
+        cm.addLineClass(lineNumber, 'background', 'line-good');
         break;
       default:
         cm.removeLineClass(lineNumber);
@@ -172,13 +172,13 @@ class App extends React.Component {
   render() {
     const options = {
       lineNumbers: true,
-      viewportMargin: 0
+      viewportMargin: 0,
     };
-    return (<div className='viewer'>
+    return (<div>
             <RTChart
               fields={['concentration']}
               data={this.state.museData} />
-            <Codemirror ref="codemirror" value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
+            <Codemirror className='viewer' ref="codemirror" value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
             </div>);
   }
 }
