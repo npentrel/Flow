@@ -1,6 +1,7 @@
 import React from 'react';
 import Codemirror from 'react-codemirror';
 import io from 'socket.io-client';
+import RTChart from 'react-rt-chart';
 
 const SOCKET_URI = 'http://localhost:5000';
 
@@ -105,21 +106,20 @@ class App extends React.Component {
     this.socket = io(SOCKET_URI);
     this.state = {
       code: DUMMY_CODE,
-      concentrationData: [],
     };
 
     const self = this;
-    this.socket.on('museData', (data) => {
-      console.log('received: ' + data);
+    this.socket.on('museData', (museData) => {
+      console.log('received: ' + museData);
       const lineRange = this.getLineRange();
       const fullData = {
-        ...JSON.parse(data),
+        ...JSON.parse(museData),
         ...lineRange
       };
       console.log('emitting: ' + JSON.stringify(fullData));
       this.socket.emit('lineRange', fullData);
       self.setState({
-        concentrationData: [...this.state.concentrationData, fullData]
+        museData
       })
     });
   }
@@ -127,15 +127,6 @@ class App extends React.Component {
     this.setState({
       code: newCode
     });
-  }
-  render() {
-    const options = {
-      lineNumbers: true,
-      viewportMargin: 0
-    };
-    return (<div>
-      <Codemirror ref="codemirror" value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
-    </div>);
   }
   getLineRange() {
     const cm = this.refs.codemirror.getCodeMirror();
@@ -176,6 +167,18 @@ class App extends React.Component {
       default:
         cm.removeLineClass(lineNumber);
     }
+  }
+  render() {
+    const options = {
+      lineNumbers: true,
+      viewportMargin: 0
+    };
+    return (<div>
+            <RTChart
+              fields={['concentration']}
+              data={this.state.museData} />
+            <Codemirror ref="codemirror" value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
+            </div>);
   }
 }
 
