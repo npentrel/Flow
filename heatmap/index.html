@@ -7,16 +7,12 @@
 <body>
 
 <div class="container">
-    <div class="options">
-        <label>Radius </label><input type="range" id="radius" value="25" min="10" max="50" /><br />
-        <label>Blur </label><input type="range" id="blur" value="15" min="10" max="50" />
-    </div>
     <canvas id="canvas" width="1000" height="4000"></canvas>
 </div>
-
 <script src="simpleheat.js"></script>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
 <script>
+    "use strict";
     window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                                    window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
@@ -25,6 +21,7 @@
     }
 
     var heat = simpleheat('canvas').max(18), frame;
+    heat.radius(200, 50);
 
     function draw() {
         console.time('draw');
@@ -35,20 +32,19 @@
 
     draw();
 
-    get('canvas').onmousemove = function (e) {
-        heat.add([e.layerX, e.layerY, 1]);
+    $('.container').scroll(function(event) {
+        let top = event.target.scrollTop;
+        let height = event.target.clientHeight;
+        let width = event.target.clientWidth;
+        let bottom = top + height;
+        console.log(top + ' - ' + bottom);
+        heat.add([width/2, top+height/2, 1]);
         frame = frame || window.requestAnimationFrame(draw);
-    };
 
-    var radius = get('radius'),
-        blur = get('blur'),
-        changeType = 'oninput' in radius ? 'oninput' : 'onchange';
+    })
 
-    radius[changeType] = blur[changeType] = function (e) {
-        heat.radius(+radius.value, +blur.value);
-        frame = frame || window.requestAnimationFrame(draw);
-    };
 
 </script>
+
 </body>
 </html>
