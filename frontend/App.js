@@ -131,9 +131,37 @@ class App extends React.Component {
       from: Math.max(0, currLine - 3),
       to: Math.min(currLine + 3, cm.doc.size)
     })
+    // TODO: for test logging
     console.log(lineRange);
     // TODO: websocket this to flask backend whenever Muse reading is received
     this.socket.emit('lineRange', lineRange);
+  }
+  // TODO: for test logging, remove when done
+  componentDidMount() {
+    this.highlightLine(2, 'red');
+    this.highlightLine(9, 'yellow');
+    this.highlightLine(4, 'yellow');
+    this.highlightLine(5, 'red');
+    this.highlightLine(6, 'green');
+    this.highlightLine(8, 'green');
+  }
+  highlightLine(_lineNumber, color) {
+    // Zero indexing
+    const lineNumber = _lineNumber - 1;
+    const cm = this.refs.codemirror.getCodeMirror();
+    switch (color) {
+      case 'red':
+        cm.addLineClass(lineNumber, 'background', 'line-red');
+        break;
+      case 'yellow':
+        cm.addLineClass(lineNumber, 'background', 'line-yellow');
+        break;
+      case 'green':
+        cm.addLineClass(lineNumber, 'background', 'line-green');
+        break;
+      default:
+        cm.removeLineClass(lineNumber);
+    }
   }
 }
 
