@@ -5,7 +5,8 @@ import RTChart from 'react-rt-chart';
 
 const SOCKET_URI = 'http://localhost:5000';
 
-const DUMMY_CODE = " Builder, in building the little house,\n\
+const DUMMY_CODE = "\
+      Builder, in building the little house,\n\
       In every way you may please yourself;\n\
       But please please me in the kitchen chimney:\n\
       Don't build me a chimney upon a shelf.\n\
@@ -169,15 +170,14 @@ class App extends React.Component {
         cm.removeLineClass(lineNumber);
     }
   }
+
   render() {
     const options = {
       lineNumbers: true,
       viewportMargin: 0,
     };
     return (<div>
-            <RTChart
-              fields={['concentration']}
-              data={this.state.museData} />
+            <RTChart fields={['concentration']} data={this.state.museData} />
             <Codemirror className='viewer' ref="codemirror" value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
             </div>);
   }
