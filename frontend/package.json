@@ -14,5 +14,8 @@
     "babel-preset-stage-0": "^6.3.13",
     "webpack": "^2.0.6-beta",
     "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "react-codemirror": "^0.2.5"
   }
 }
