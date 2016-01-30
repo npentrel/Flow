@@ -116,7 +116,7 @@ class App extends React.Component {
       lineNumbers: true,
       viewportMargin: 0
     };
-    return (<div>
+    return (<div className='viewer'>
       <Codemirror ref="codemirror" value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
       <button ref="test" onClick={this.testClick.bind(this)}>Button</button>
     </div>);

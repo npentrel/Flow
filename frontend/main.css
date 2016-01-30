@@ -1,0 +1,32 @@
+body {
+  font-family: Helvetica Neue;
+  font-size: 1.2em;
+  max-width: 800px;
+  margin: auto;
+}
+.header {
+  margin: 2rem 0em 0em 2rem; 
+}
+.header-logo {
+  height: 100px;
+}
+.header-title {
+  margin: 0;
+  text-size: 2em;
+  font-weight: 200; 
+}
+button {
+  display: block;
+  margin: 2.2em;
+  font-size: 1rem;
+  padding: 0.5em 1.0em 0.4em;
+}
+.viewer {
+  max-width: 52em;
+  margin: 2em auto;
+  font-size: 1.rem;
+}
+.CodeMirror {
+  font-family: Monaco, monospace;
+  background: #fbfafc;
+}
