@@ -1,2 +1,0 @@
-python-osc==1.5
-wheel==0.26.0
