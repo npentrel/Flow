@@ -1,8 +1,0 @@
-{
-  "name": "flow-frontend",
-  "version": "0.0.1",
-  "dependencies": {
-    "pdfjs-bower": "^1.0.233"
-  },
-  "private": true
-}
