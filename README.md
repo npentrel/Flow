@@ -37,3 +37,11 @@ cd ./websocket-dummy/ && npm start &
 cd ..
 cd ./frontend/ && npm start
 ```
+
+idea-graveyard
+--------------
+
+ [ ] Plot concentration data over time above
+ [ ] File upload, github import
+ [ ] Use HPE API to do prediction/smoothing
+      * Topic modeling/extraction?
