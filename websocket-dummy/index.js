@@ -11,12 +11,29 @@ http.listen(5000, function(){
 });
 
 io.on('connection', function(socket){
-  console.log('connection');
+  console.log('connection: ' + socket.id);
+
+  var t;
+  function timeout() {
+    t = setTimeout(function() {
+      var museData = {
+        time: 123,
+        concentration: 0.33
+      };
+      console.log('emitting: ' + JSON.stringify(museData));
+      socket.emit('museData', JSON.stringify(museData));
+      timeout(t);
+    }, 3000);
+  }
+  timeout();
+
   socket.on('disconnect', function(){
-    console.log('disconnection');
+    clearTimeout(t);
+    console.log('disconnection: ' + socket.id);
   });
   socket.on('lineRange', function(lineRange){
     console.log(lineRange);
   })
+
 });
 

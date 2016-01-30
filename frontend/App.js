@@ -8,6 +8,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.socket = io(SOCKET_URI);
+    this.socket.on('museData', (data) => {
+      console.log('received: ' + JSON.stringify(data));
+    });
     this.state = {
       code: " Builder, in building the little house,\n\
       In every way you may please yourself;\n\
