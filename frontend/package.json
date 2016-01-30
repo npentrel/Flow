@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "react-codemirror": "^0.2.5",
+    "react-rt-chart": "^1.1.1",
     "socket.io-client": "^1.4.5"
   }
 }
