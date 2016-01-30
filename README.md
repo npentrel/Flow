@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Flow
 
 backend
@@ -16,4 +17,23 @@ run
 ```
 muse-io --device Muse-1E7D --osc osc.udp://localhost:5000
 ./reader.py
+```
+
+frontend
+========
+install
+------
+```
+cd ./websocket-dummy/ && npm install`
+cd ..
+cd ./frontend/ && npm install`
+```
+
+run
+---
+
+```
+cd ./websocket-dummy/ && npm start &
+cd ..
+cd ./frontend/ && npm start
 ```
