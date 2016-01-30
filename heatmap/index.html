@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flow reader</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="options">
+        <label>Radius </label><input type="range" id="radius" value="25" min="10" max="50" /><br />
+        <label>Blur </label><input type="range" id="blur" value="15" min="10" max="50" />
+    </div>
+    <canvas id="canvas" width="1000" height="4000"></canvas>
+</div>
+
+<script src="simpleheat.js"></script>
+
+<script>
+    window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                                   window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+    function get(id) {
+        return document.getElementById(id);
+    }
+
+    var heat = simpleheat('canvas').max(18), frame;
+
+    function draw() {
+        console.time('draw');
+        heat.draw();
+        console.timeEnd('draw');
+        frame = null;
+    }
+
+    draw();
+
+    get('canvas').onmousemove = function (e) {
+        heat.add([e.layerX, e.layerY, 1]);
+        frame = frame || window.requestAnimationFrame(draw);
+    };
+
+    var radius = get('radius'),
+        blur = get('blur'),
+        changeType = 'oninput' in radius ? 'oninput' : 'onchange';
+
+    radius[changeType] = blur[changeType] = function (e) {
+        heat.radius(+radius.value, +blur.value);
+        frame = frame || window.requestAnimationFrame(draw);
+    };
+
+</script>
+</body>
+</html>
