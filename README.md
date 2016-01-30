@@ -1,16 +1,18 @@
 # Flow
 
-# backend
+backend
+=======
 
-# install
+install
+-------
 ```
 virtualenv -p python3 venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-# run
-```
+run
+-----
 muse-io --device Muse-1E7D --osc osc.udp://localhost:5000
 ./reader.py
 ```
