@@ -1,6 +1,7 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var moment = require('moment');
 
 app.get('/', function(req, res){
   res.sendfile('index.html');
@@ -17,8 +18,8 @@ io.on('connection', function(socket){
   function timeout() {
     t = setTimeout(function() {
       var museData = {
-        time: 123,
-        concentration: 0.33
+        time: moment().milliseconds(),
+        concentration: moment().milliseconds()
       };
       console.log('emitting: ' + JSON.stringify(museData));
       socket.emit('museData', JSON.stringify(museData));
