@@ -109,11 +109,12 @@ class App extends React.Component {
     };
 
     const self = this;
-    this.socket.on('museData', (museData) => {
-      console.log('received: ' + museData);
+    this.socket.on('museData', (_museData) => {
+      const museData = JSON.parse(_museData);
+      console.log('received: ' + JSON.stringify(museData));
       const lineRange = this.getLineRange();
       const fullData = {
-        ...JSON.parse(museData),
+        ...museData,
         ...lineRange
       };
       console.log('emitting: ' + JSON.stringify(fullData));

@@ -18,13 +18,13 @@ io.on('connection', function(socket){
   function timeout() {
     t = setTimeout(function() {
       var museData = {
-        time: moment().milliseconds(),
-        concentration: moment().milliseconds()
+        date: new Date(),
+        concentration: Math.random(),
       };
       console.log('emitting: ' + JSON.stringify(museData));
       socket.emit('museData', JSON.stringify(museData));
       timeout(t);
-    }, 3000);
+    }, 1000);
   }
   timeout();
 
