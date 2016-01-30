@@ -1,0 +1,95 @@
+{
+  "_args": [
+    [
+      "react-rt-chart",
+      "/home/fliang/tmp/hack-cam/Flow/frontend"
+    ]
+  ],
+  "_from": "react-rt-chart@latest",
+  "_id": "react-rt-chart@1.1.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-rt-chart",
+  "_nodeVersion": "4.2.2",
+  "_npmUser": {
+    "email": "emil.a.mork@gmail.com",
+    "name": "emilmork"
+  },
+  "_npmVersion": "2.14.7",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "react-rt-chart",
+    "raw": "react-rt-chart",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-rt-chart/-/react-rt-chart-1.1.1.tgz",
+  "_shasum": "707c963011bfc3de4161f1e3716255472e9b5898",
+  "_shrinkwrap": null,
+  "_spec": "react-rt-chart",
+  "_where": "/home/fliang/tmp/hack-cam/Flow/frontend",
+  "author": {
+    "email": "emil.a.mork@gmail.com",
+    "name": "Emil Mork"
+  },
+  "bugs": {
+    "url": "https://github.com/emilmork/react-rt-chart/issues"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.2.0",
+    "c3": "^0.4.10",
+    "deepmerge": "^0.2.10",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "description": "Real-time chart component for React using c3",
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "chai": "^3.3.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.0",
+    "mocha": "^2.3.3"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "707c963011bfc3de4161f1e3716255472e9b5898",
+    "tarball": "http://registry.npmjs.org/react-rt-chart/-/react-rt-chart-1.1.1.tgz"
+  },
+  "gitHead": "fc4df089e1e84f879e4e1d16428be14534534f64",
+  "homepage": "https://github.com/emilmork/react-rt-chart",
+  "keywords": [
+    "React",
+    "Real-time chart",
+    "c3",
+    "chart",
+    "react",
+    "time-series chart"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "maintainers": [
+    {
+      "name": "emilmork",
+      "email": "emil.a.mork@gmail.com"
+    }
+  ],
+  "name": "react-rt-chart",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilmork/react-rt-chart.git"
+  },
+  "scripts": {
+    "prepublish": "gulp",
+    "test": "mocha --reporter spec"
+  },
+  "version": "1.1.1"
+}

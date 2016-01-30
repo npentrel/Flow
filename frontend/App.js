@@ -1,7 +1,7 @@
 import React from 'react';
 import Codemirror from 'react-codemirror';
 import io from 'socket.io-client';
-import RTChart from 'react-rt-chart';
+import RTChart from './react-rt-chart';
 
 const SOCKET_URI = 'http://localhost:5000';
 
