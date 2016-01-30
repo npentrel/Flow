@@ -16,6 +16,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "react-codemirror": "^0.2.5"
+    "react-codemirror": "^0.2.5",
+    "socket.io-client": "^1.4.5"
   }
 }

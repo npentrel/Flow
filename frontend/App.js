@@ -1,9 +1,13 @@
 import React from 'react';
 import Codemirror from 'react-codemirror';
+import io from 'socket.io-client';
+
+const SOCKET_URI = 'http://localhost:5000';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.socket = io(SOCKET_URI);
     this.state = {
       code: " Builder, in building the little house,\n\
       In every way you may please yourself;\n\
@@ -100,6 +104,7 @@ class App extends React.Component {
       A chimney that only would serve to remind me\n\
       Of castles I used to build in air."
     };
+
   }
   updateCode(newCode) {
     this.setState({
@@ -125,6 +130,7 @@ class App extends React.Component {
     })
     console.log(lineRange);
     // TODO: websocket this to flask backend whenever Muse reading is received
+    this.socket.emit('lineRange', lineRange);
   }
 }
 
