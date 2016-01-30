@@ -30,3 +30,12 @@ button {
   font-family: Monaco, monospace;
   background: #fbfafc;
 }
+.line-bad {
+  background-color: #F45D4C;
+}
+.line-warning {
+  background-color: #EDE574;
+}
+.line-good {
+  background-color: #E1F5C4;
+}
