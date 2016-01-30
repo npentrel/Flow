@@ -42,7 +42,7 @@ class App extends React.Component {
     };
     return (<div>
       <Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
-      <button ref="test" onClick={this.testClick}/>Clicky</button>
+      <button ref="test" onClick={this.testClick}>Button</button>
     </div>);
   }
 
