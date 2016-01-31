@@ -111,8 +111,8 @@ class App extends React.Component {
 
     const self = this;
     this.socket.on('museData', (_museData) => {
-      //const museData = JSON.parse(_museData);
-      const museData = _museData;
+      // TODO: this is super fragile and assumes _museData is valid JSON string if not already JSON
+      const museData = (typeof _museData !== 'object') ? JSON.parse(_museData) : _museData;
       console.log('received: ' + JSON.stringify(museData));
       const lineRange = this.getLineRange();
       const fullData = {
@@ -158,7 +158,7 @@ class App extends React.Component {
   }
   highlightActiveLine() {
     const activeLineNo = parseInt(this.refs.activeLine.value);
-    unHighlightActiveLine();
+    this.unHighlightActiveLine();
     this.highlightLine(activeLineNo, 'line-active');
     this.setState({
       activeLineNo
@@ -170,7 +170,7 @@ class App extends React.Component {
     }
   }
   noActiveLine() {
-    unHighlightActiveLine();
+    this.unHighlightActiveLine();
     this.setState({
       activeLineNo: undefined
     });
