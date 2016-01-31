@@ -39,3 +39,6 @@ body {
 .line-good {
   background-color: #E1F5C4;
 }
+.line-active {
+  background: #e8f2ff !important;
+}
