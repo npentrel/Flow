@@ -62,7 +62,7 @@ def report(max_line):
     report = []
     for i in range(max_line):
         if i not in db:
-            average = 1
+            average = 0
         else:
             average = float(db[i]['accum']) / float(db[i]['count'])
         highlight = ""
