@@ -2,7 +2,6 @@ import React from 'react';
 import Codemirror from 'react-codemirror';
 import io from 'socket.io-client';
 import RTChart from './react-rt-chart';
-import Report from './Report';
 
 const SOCKET_URI = 'http://localhost:5000';
 
@@ -102,43 +101,18 @@ const DUMMY_CODE = "\
       A chimney that only would serve to remind me\n\
       Of castles I used to build in air."
 
-class App extends React.Component {
+class Report extends React.Component {
   constructor(props) {
     super(props);
-    this.socket = io(SOCKET_URI);
     this.state = {
       code: DUMMY_CODE,
+      reportData: {} // TODO: fill in dummy data here
     };
-
-    const self = this;
-    this.socket.on('museData', (_museData) => {
-      // TODO: this is super fragile and assumes _museData is valid JSON string if not already JSON
-      const museData = (typeof _museData !== 'object') ? JSON.parse(_museData) : _museData;
-      console.log('received: ' + JSON.stringify(museData));
-      const lineRange = this.getLineRange();
-      const fullData = {
-        ...museData,
-        ...lineRange
-      };
-      console.log('emitting: ' + JSON.stringify(fullData));
-      this.socket.emit('lineRange', fullData);
-      self.setState({
-        museData
-      })
-    });
   }
   updateCode(newCode) {
     this.setState({
       code: newCode
     });
-  }
-  getLineRange() {
-    const cm = this.refs.codemirror.getCodeMirror();
-    const currLine = cm.getCursor().line;
-    return {
-      from: Math.max(0, currLine - 3),
-      to: Math.min(currLine + 3, cm.doc.size)
-    };
   }
   highlightWord() {
     // TODO: use doc.markText(from: {line, ch}, to: {line, ch}, ?options: object) → TextMarker
@@ -157,24 +131,10 @@ class App extends React.Component {
     const cm = this.refs.codemirror.getCodeMirror();
     cm.removeLineClass(lineNumber, 'background', lineClass);
   }
-  highlightActiveLine() {
-    const activeLineNo = parseInt(this.refs.activeLine.value);
-    this.unHighlightActiveLine();
-    this.highlightLine(activeLineNo, 'line-active');
-    this.setState({
-      activeLineNo
-    });
-  }
-  unHighlightActiveLine() {
-    if (typeof this.state.activeLineNo !== 'undefined') {
-      this.unHighlightLine(this.state.activeLineNo, 'line-active')
-    }
-  }
-  noActiveLine() {
-    this.unHighlightActiveLine();
-    this.setState({
-      activeLineNo: undefined
-    });
+  componentDidMount() {
+    this.highlightLine(3, 'line-bad');
+    this.highlightLine(4, 'line-warning');
+    this.highlightLine(5, 'line-good');
   }
   render() {
     const options = {
@@ -182,14 +142,9 @@ class App extends React.Component {
       viewportMargin: 0,
     };
     return (<div>
-            <RTChart fields={['concentration']} data={this.state.museData} />
             <Codemirror className='viewer' ref="codemirror" value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
-            <input ref="activeLine"></input>
-            <button onClick={this.highlightActiveLine.bind(this)}>Highlight Active Line</button>
-            -------<br />
-            <Report />
             </div>);
   }
 }
 
-export default App;
+export default Report;
