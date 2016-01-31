@@ -14,33 +14,6 @@ class Report extends React.Component {
   };
   constructor(props) {
     super(props);
-    this.state = {
-      code: DUMMY_CODE,
-      reportData: [
-        {lineNo: '1',
-        highlight: 'warning'},
-        {lineNo: '2',
-        highlight: 'bad'},
-        {lineNo: '3',
-        highlight: 'warning'},
-        {lineNo: '4',
-        highlight: 'warning'},
-        {lineNo: '5',
-        highlight: 'good'},
-        {lineNo: '6',
-        highlight: 'good'},
-        {lineNo: '7',
-        highlight: 'good'},
-        {lineNo: '8',
-        highlight: 'good'},
-        {lineNo: '9',
-        highlight: 'good'},
-        {lineNo: '10',
-        highlight: 'good'}, // TODO: replace with actual data
-        {lineNo: '19',
-        highlight: 'good'},
-      ]
-    };
   }
   updateCode(newCode) {
     this.setState({
@@ -66,7 +39,8 @@ class Report extends React.Component {
   }
   componentWillUpdate() {
     let that = this; 
-    this.state.reportData.forEach(function(line, indx) {
+    window.props = this.props;
+    this.props.reportData.lineAnotations.forEach(function(line, indx) {
       that.highlightLine(line.lineNo, 'line-' + line.highlight);
     });
   }
