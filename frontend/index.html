@@ -11,10 +11,47 @@
     <div class="header">
       <img class="header-logo" src="img/logo.png">
       <h1 class="header-title">Flow</h1>
-    </div>
-
+    </div>    
     <div id="app"></div>
 
     <script src="index.js"></script>
+    <script src="xlabs.js"></script>
+    <script type="text/javascript">
+
+
+  var Demo = {
+
+      update : function() {
+        var x = xLabs.getConfig( "state.head.x" );
+        var y = xLabs.getConfig( "state.head.y" );
+//        var targetElement = document.getElementById( "target" );
+        // console.log(targetElement);
+        // targetElement.style.left = ( screen.width  * 0.5 ) - ( x * 300 );
+        // targetElement.style.top  = ( screen.height * 0.5 ) + ( y * 300 );
+        // console.log(targetElement.style.left);
+        // console.log(targetElement.style.top);
+        var xs = parseFloat( xLabs.getConfig("mouseEmulator.cursor.x") ) +  screen.width * 0.5; // screen coords
+        var ys = parseFloat( xLabs.getConfig("mouseEmulator.cursor.y") ) + screen.height * 0.5;
+        console.log(xLabs.getTimestamp());
+        console.log("x: " + xs);
+        console.log("y: " + ys);
+        var elem = document.elementFromPoint(xs, ys).parentElement;
+        elem.className += " line-active ";
+      },
+
+      ready : function() {
+        xLabs.setConfig( "system.mode", "mouse" );
+        xLabs.setConfig( "browser.canvas.paintHeadPose", "0" );
+        window.addEventListener( "beforeunload", function() {
+            xLabs.setConfig( "system.mode", "off" );
+        });
+      }
+
+    };
+
+    xLabs.setup( Demo.ready, Demo.update, null, "***REMOVED***" );
+
+    </script>
+
   </body>
 </html>
