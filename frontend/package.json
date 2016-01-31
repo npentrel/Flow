@@ -19,6 +19,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "jquery": "^2.2.0",
     "react-codemirror": "^0.2.5",
     "react-rt-chart": "^1.1.1",
     "socket.io-client": "^1.4.5"
