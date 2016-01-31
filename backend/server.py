@@ -68,7 +68,8 @@ def report(max_line):
             highlight = 'good'
 
         report.append({'lineNo': i,
-                       'highlight': highlight})
+                       'highlight': highlight,
+                       'average': average})
         print('[{}] = {}, highlight: {}'.format(i, average, highlight))
 
     print(str(db))
