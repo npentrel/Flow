@@ -8,11 +8,11 @@ body {
   margin: 1rem 0em 0em 2rem; 
 }
 .header-logo {
-  height: 100px;
+  height: 140px;
 }
 .header-title {
   margin: 0 0 1rem;
-  font-size: 2em;
+  font-size: 1.9em;
   font-weight: 200; 
 }
 .graphWindow {
@@ -26,7 +26,8 @@ body {
   font-size: 1rem;
 }
 .viewer-report {
-  max-height: 1000px;
+  max-height: 1200px;
+  overflow-y: scroll; 
 }
 .viewer-report .CodeMirror {
   height: 100%;

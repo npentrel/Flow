@@ -23,7 +23,6 @@ class Report extends React.Component {
   highlightWord() {
     // TODO: use doc.markText(from: {line, ch}, to: {line, ch}, ?options: object) → TextMarker
     // to highlight text under eyeballs
-
   }
   highlightLine(_lineNumber, lineClass) {
     // Zero indexing
@@ -56,8 +55,7 @@ class Report extends React.Component {
       },
     };
     const { text } = this.props;
-    return (<div>
-            <Codemirror className='viewer-report' ref="codemirror" value={text} onChange={this.updateCode.bind(this)} options={options} />
+    return (<div><Codemirror className='viewer-report' ref="codemirror" value={text} onChange={this.updateCode.bind(this)} options={options} />
             </div>);
   }
 }
