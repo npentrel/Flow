@@ -27,9 +27,12 @@ if async_mode is None:
 import time
 from flask import Flask
 from flask import jsonify
+
+from flask.ext.cors import CORS
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
+CORS(app)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, async_mode=async_mode)
 thread = None
