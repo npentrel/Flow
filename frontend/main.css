@@ -2,16 +2,16 @@ body {
   font-family: Helvetica Neue;
   font-size: 1.15em;
   max-width: 800px;
-  margin: auto;
+  margin: 3rem auto 4rem;
 }
 .header {
-  margin: 2rem 0em 0em 2rem; 
+  margin: 1rem 0em 0em 2rem; 
 }
 .header-logo {
   height: 100px;
 }
 .header-title {
-  margin: 0;
+  margin: 0 0 1rem;
   font-size: 2em;
   font-weight: 200; 
 }
@@ -31,7 +31,6 @@ body {
 .viewer-report .CodeMirror {
   height: 100%;
 }
-
 .CodeMirror {
   font-family: Monaco, monospace;
   background: #fbfafc;
@@ -47,4 +46,26 @@ body {
 }
 .line-active {
   background: #e8f2ff !important;
+}
+
+input {
+  font-size: 25px;
+  margin: 0.3rem;
+  margin-left:0; 
+}
+button {
+  display: inline-block;
+  text-align: center;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-appearance: none;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 0.85em 1em;
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  background-color: #2199e8;
+  color: #fff;
 }
