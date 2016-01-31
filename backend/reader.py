@@ -1,17 +1,25 @@
 #!/usr/bin/env python3
 import argparse
+import requests
 import math
 import time
+
 
 from pythonosc import dispatcher
 from pythonosc import osc_server
 
+socket_server = "http://127.0.0.1:8000"
 
-def concentration_handler(unused_addr, args, ch1):
-    print("Concentration: ", ch1)
-    log.write("{0},{1}\n".format(time.time(), ch1))
-    log.flush()
-    #logging.info("{0},{1}".format(time.time(), ch1))
+
+def concentration_handler(unused_addr, args, con):
+    print("Concentration: ", con)
+    requests.get(socket_server + "/update/concentration/{}".format(con))
+
+
+def mellow_handler(unused_addr, args, mellow):
+    print("Mellow: ", mellow)
+    requests.get(socket_server + "/update/mellow/{}".format(mellow))
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
