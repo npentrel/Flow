@@ -8,7 +8,7 @@ import time
 from pythonosc import dispatcher
 from pythonosc import osc_server
 
-socket_server = "http://127.0.0.1:8000"
+socket_server = "http://127.0.0.1:5000"
 
 
 def concentration_handler(unused_addr, args, con):
@@ -28,7 +28,7 @@ if __name__ == "__main__":
                         help="The ip to listen on")
     parser.add_argument("--port",
                         type=int,
-                        default=5000,
+                        default=8000,
                         help="The port to listen on")
     parser.add_argument("--logfile",
                         default="muse.log",
