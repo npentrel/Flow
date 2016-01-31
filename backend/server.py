@@ -61,7 +61,10 @@ def handle_message(json):
 def report(max_line):
     report = []
     for i in range(max_line):
-        average = float(db[i]['accum']) / float(db[i]['count'])
+        if i not in db:
+            average = 1
+        else:
+            average = float(db[i]['accum']) / float(db[i]['count'])
         highlight = ""
         if average <= 0.33:
             highlight = 'bad'
