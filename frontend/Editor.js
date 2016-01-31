@@ -1,9 +1,11 @@
+import $ from 'jquery';
 import React, { PropTypes } from 'react';
 import Codemirror from 'react-codemirror';
 import io from 'socket.io-client';
 import RTChart from './react-rt-chart';
 
 const SOCKET_URI = 'http://localhost:5000';
+const REPORT_URL = 'http://localhost:5000/report/';
 
 class Editor extends React.Component {
   static propTypes = {
@@ -79,11 +81,25 @@ class Editor extends React.Component {
       activeLineNo: undefined
     });
   }
+  reportUrl() {
+    const cm = this.refs.codemirror.getCodeMirror();
+    const maxLineNo = cm.doc.size;
+    return REPORT_URL + maxLineNo;
+  }
   makeReport() {
-    // TODO(feynman): AJAX with addReport as callback
-    this.props.addReport({
-      a: 1
-      // TODO(jordan): dummy report data here
+    $.ajax({
+      url: this.reportUrl(),
+      dataType: 'json',
+      type: 'GET',
+      success: (data) => {
+        console.log('Got report data:');
+        console.log(JSON.stringify(data));
+        // TODO(jordan): override data here with dummy data for testing
+        this.props.addReport(data);
+      },
+      error: (xhr, status, err) => {
+        console.error(this.props.url, status, err.toString());
+      }
     });
   }
   render() {
