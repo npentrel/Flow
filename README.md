@@ -17,6 +17,7 @@ run
 ```
 muse-io --device Muse-1E7D --osc osc.udp://localhost:5000
 ./reader.py
+./server.py
 ```
 
 frontend
