@@ -106,7 +106,30 @@ class Report extends React.Component {
     super(props);
     this.state = {
       code: DUMMY_CODE,
-      reportData: {} // TODO: fill in dummy data here
+      reportData: [
+        {lineNo: '1',
+        highlight: 'warning'},
+        {lineNo: '2',
+        highlight: 'bad'},
+        {lineNo: '3',
+        highlight: 'warning'},
+        {lineNo: '4',
+        highlight: 'warning'},
+        {lineNo: '5',
+        highlight: 'good'},
+        {lineNo: '6',
+        highlight: 'good'},
+        {lineNo: '7',
+        highlight: 'good'},
+        {lineNo: '8',
+        highlight: 'good'},
+        {lineNo: '9',
+        highlight: 'good'},
+        {lineNo: '10',
+        highlight: 'good'}, // TODO: replace with actual data
+        {lineNo: '19',
+        highlight: 'good'},
+      ]
     };
   }
   updateCode(newCode) {
@@ -131,18 +154,24 @@ class Report extends React.Component {
     const cm = this.refs.codemirror.getCodeMirror();
     cm.removeLineClass(lineNumber, 'background', lineClass);
   }
-  componentDidMount() {
-    this.highlightLine(3, 'line-bad');
-    this.highlightLine(4, 'line-warning');
-    this.highlightLine(5, 'line-good');
+  componentWillUpdate() {
+    let that = this; 
+    this.state.reportData.forEach(function(line, indx) {
+      that.highlightLine(line.lineNo, 'line-' + line.highlight);
+    });
   }
   render() {
     const options = {
       lineNumbers: true,
       viewportMargin: 0,
     };
+    const chart = {
+      axis: {
+        y: { min: 0, max: 1}
+      },
+    };
     return (<div>
-            <Codemirror className='viewer' ref="codemirror" value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
+            <Codemirror className='viewer-report' ref="codemirror" value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
             </div>);
   }
 }

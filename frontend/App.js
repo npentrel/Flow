@@ -143,7 +143,6 @@ class App extends React.Component {
   highlightWord() {
     // TODO: use doc.markText(from: {line, ch}, to: {line, ch}, ?options: object) → TextMarker
     // to highlight text under eyeballs
-
   }
   highlightLine(_lineNumber, lineClass) {
     // Zero indexing
@@ -186,8 +185,8 @@ class App extends React.Component {
             <Codemirror className='viewer' ref="codemirror" value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
             <input ref="activeLine"></input>
             <button onClick={this.highlightActiveLine.bind(this)}>Highlight Active Line</button>
-            -------<br />
-            <Report />
+            <br/>-------<br/>
+            <Report/>
             </div>);
   }
 }

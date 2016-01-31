@@ -1,6 +1,6 @@
 body {
   font-family: Helvetica Neue;
-  font-size: 1.2em;
+  font-size: 1.15em;
   max-width: 800px;
   margin: auto;
 }
@@ -12,7 +12,7 @@ body {
 }
 .header-title {
   margin: 0;
-  text-size: 2em;
+  font-size: 2em;
   font-weight: 200; 
 }
 .graphWindow {
@@ -22,10 +22,16 @@ body {
   width:105%;
 }
 .viewer {
-  max-width: 52em;
   margin: 2em auto;
-  font-size: 1.rem;
+  font-size: 1rem;
 }
+.viewer-report {
+  max-height: 1000px;
+}
+.viewer-report .CodeMirror {
+  height: 100%;
+}
+
 .CodeMirror {
   font-family: Monaco, monospace;
   background: #fbfafc;
